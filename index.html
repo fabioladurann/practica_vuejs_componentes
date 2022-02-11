@@ -7,6 +7,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!-- TODO: Cargar CSS Bootstrap (no es necesario el JS) -->
     </head>
 
@@ -22,7 +23,12 @@
                - Para cada item: (https://vuejs.org/v2/guide/index.html#Conditionals-and-Loops)
                  - Crear un componente item-data
             -->
-
+            <div class="jumbotron" style="margin-left:10px;">
+                <h1 class="display" id="title">{{col.collection.title}}</h1>
+              </div>
+                <div class="card-group">
+                    <item-data v-for="item in item" :item="item" ></item-data>
+                </div>   
         </div>
 
 
@@ -33,7 +39,7 @@
             <!--
                  TODO: Componente edit-form
             -->
-
+          
         </script>
 
 
@@ -44,10 +50,27 @@
             <!--
                  TODO: Componente item-data
             -->
-
+            <div class="card" >
+            <div class="card-body" v-show="datos">
+              <dl v-for="d in item.data" :itemdata="d">
+                <dt>{{d.prompt}}</dt>
+                <dd>{{d.value}}</dd>       
+              </dl>
+            
+              <a class="btn btn-primary" v-bind:href="item.href" role="button">Ver</a>
+              <button class="btn btn-secondary"  v-on:click="toggleEditFormVisibility" >Editar</button>
+          </div>
+          <div class="card-body " v-show="edicion">
+            <dl v-for="d in item.data">
+                <dd>{{d.prompt}}</dd>
+                <input v-if="d.prompt != 'Description'" v-model="d.value" type="text">
+                <textarea v-else v-model="d.value" type="text"></textarea>
+            </dl>
+            <button class="btn btn-primary"  v-on:click="formClose">Cerrar</button> 
+        </div> 
         </script>
 
-
+        
         <!-- TODO: Cargar librería VueJS y archivo js/script.js -->
 
     </body>
