@@ -26,7 +26,7 @@
                - Para cada item: (https://vuejs.org/v2/guide/index.html#Conditionals-and-Loops)
                  - Crear un componente item-data
             -->
-            <div class="jumbotron" style="margin-left:10px;">
+            <div class="jumbotron" style="margin-left:10px; margin-right: 10px;">
                 <h1 class="display" id="title">{{col.collection.title}}</h1>
               </div>
                 <div class="card-group">
@@ -54,7 +54,7 @@
             <!--
                  TODO: Componente item-data
             -->
-            <div class="card" >
+        <div class="card" style="padding: auto;">
             <div class="card-body" v-show="datos">
               <dl v-for="d in item.data" :itemdata="d">
                 <dt>{{d.prompt}}</dt>
@@ -62,8 +62,10 @@
               </dl>
             
               <a class="btn btn-primary" v-bind:href="item.href" role="button">Ver</a>
-              <button class="btn btn-secondary"  v-on:click="toggleEditFormVisibility" >Editar</button>
-          </div>
+              <button class="btn btn-secondary"  v-on:click="toggleEditFormVisibility">Editar</button>
+            </div>
+
+      
           <div class="card-body " v-show="edicion">
             <dl v-for="d in item.data">
                 <dd>{{d.prompt}}</dd>
@@ -71,7 +73,8 @@
                 <textarea v-else v-model="d.value" type="text"></textarea>
             </dl>
             <button class="btn btn-primary"  v-on:click="formClose">Cerrar</button> 
-        </div> 
+            </div> 
+        </div>
         </script>
         
         <!-- TODO: Cargar librería VueJS y archivo js/script.js -->
